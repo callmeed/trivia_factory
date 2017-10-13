@@ -74,3 +74,4 @@ end
 
 require "trivia_factory/vocabulary_question"
 require "trivia_factory/math_question"
+require "trivia_factory/sports_question"
