@@ -5,7 +5,35 @@ class TriviaFactoryTest < Minitest::Test
     refute_nil ::TriviaFactory::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
+  def test_to_hash
+    question = TriviaFactory::Question.new
+    assert_kind_of Hash, question.to_h
+  end
+
+  def test_csv_fetching
+    data = TriviaFactory::Question.fetch_csv('vocabulary')
+    assert_kind_of Array, data
+  end
+
+  def test_math_question
+    question = TriviaFactory::Question.math
+    assert_equal question.question_type, :fill_in_the_blank
+    assert_equal question.answer_type, :integer
+  end
+
+  def test_vocabulary_question
+    question = TriviaFactory::Question.vocabulary
+    assert_equal question.question_type, :multiple_choice
+    assert_equal question.answer_type, :choice_index
+    assert_equal question.choices.count, 4
+    assert_operator question.answer, :<, question.choices.count
+  end
+
+  def test_state_capital_question
+    skip("Not implemented yet")
+  end
+
+  def test_country_capital_question
+    skip("Not implemented yet")
   end
 end
