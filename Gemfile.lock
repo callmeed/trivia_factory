@@ -1,0 +1,22 @@
+PATH
+  remote: .
+  specs:
+    trivia_factory (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.10.3)
+    rake (10.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.15)
+  minitest (~> 5.0)
+  rake (~> 10.0)
+  trivia_factory!
+
+BUNDLED WITH
+   1.15.4
