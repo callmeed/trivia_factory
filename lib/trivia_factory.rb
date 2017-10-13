@@ -1,4 +1,5 @@
 require "trivia_factory/version"
+require "csv"
 
 module TriviaFactory
   class Question
@@ -46,6 +47,31 @@ module TriviaFactory
         question.answer = first + second
         question.choices = []
         question
+      end
+
+      def vocabulary
+        # File: vocabulary.csv
+        # Column 1: word
+        # Column 2: definition
+        # Format: "Which is the most appropriate definition of the word '[WORD]'?"
+        data = fetch_csv('vocabulary')
+        answer_row = data.sample
+        question = TriviaFactory::Question.new
+        question.label = "Choose the correct definition of the word '#{answer_row[0]}'"
+        question.choices = [answer_row[1]]
+        question.question_type = :multiple_choice
+        question.answer_type = :choice_index
+        3.times do
+          question.choices << data.sample[1]
+        end
+        question.choices.shuffle!
+        question.answer = question.choices.index(answer_row[1])
+        question
+      end
+
+      def fetch_csv(name)
+        file = File.join(File.dirname(__FILE__), "data", "#{name}.csv")
+        data = CSV.read(file)
       end
     end
   end
