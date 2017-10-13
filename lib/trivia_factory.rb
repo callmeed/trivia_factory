@@ -5,7 +5,7 @@ module TriviaFactory
   class Question
 
     QUESTION_TYPES = [:true_false, :multiple_choice, :fill_in_the_blank].freeze
-    ANSWER_TYPES = [:choice_index, :boolean, :string, :integer]
+    ANSWER_TYPES = [:choice_index, :boolean, :string, :integer].freeze
 
     attr_accessor :label
     attr_accessor :question_type
@@ -37,36 +37,31 @@ module TriviaFactory
       end
 
       def math(max = 100)
+        TriviaFactory::MathQuestion.generate(max)
+      end
+
+      def us_state_capitals
+        # File: us_state_capitals.csv
+        # Column 1: state
+        # Column 2: city
+        # Format: "Which is the most appropriate definition of the word '[WORD]'?"
+        data = fetch_csv('us_state_capitals')
+        answer_row = data.sample
         question = TriviaFactory::Question.new
-        rng = Random.new
-        first = rng.rand(max)
-        second = rng.rand(max)
-        question.label = "#{first} + #{second} = _____?"
-        question.question_type = :fill_in_the_blank
-        question.answer_type = :integer
-        question.answer = first + second
-        question.choices = []
+        question.label = "#{answer_row[1]} is the capital of what US state?"
+        question.choices = [answer_row[0]]
+        question.question_type = :multiple_choice
+        question.answer_type = :choice_index
+        3.times do
+          question.choices << data.sample[0]
+        end
+        question.choices.shuffle!
+        question.answer = question.choices.index(answer_row[0])
         question
       end
 
       def vocabulary
-        # File: vocabulary.csv
-        # Column 1: word
-        # Column 2: definition
-        # Format: "Which is the most appropriate definition of the word '[WORD]'?"
-        data = fetch_csv('vocabulary')
-        answer_row = data.sample
-        question = TriviaFactory::Question.new
-        question.label = "Choose the correct definition of the word '#{answer_row[0]}'"
-        question.choices = [answer_row[1]]
-        question.question_type = :multiple_choice
-        question.answer_type = :choice_index
-        3.times do
-          question.choices << data.sample[1]
-        end
-        question.choices.shuffle!
-        question.answer = question.choices.index(answer_row[1])
-        question
+        TriviaFactory::VocabularyQuestion.generate
       end
 
       def fetch_csv(name)
@@ -76,3 +71,6 @@ module TriviaFactory
     end
   end
 end
+
+require "trivia_factory/vocabulary_question"
+require "trivia_factory/math_question"

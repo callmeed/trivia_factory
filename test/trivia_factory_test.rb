@@ -29,8 +29,12 @@ class TriviaFactoryTest < Minitest::Test
     assert_operator question.answer, :<, question.choices.count
   end
 
-  def test_state_capital_question
-    skip("Not implemented yet")
+  def test_state_capitals_question
+    question = TriviaFactory::Question.us_state_capitals
+    assert_equal question.question_type, :multiple_choice
+    assert_equal question.answer_type, :choice_index
+    assert_equal question.choices.count, 4
+    assert_operator question.answer, :<, question.choices.count
   end
 
   def test_country_capital_question
