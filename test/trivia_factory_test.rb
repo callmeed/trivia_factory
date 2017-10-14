@@ -40,4 +40,13 @@ class TriviaFactoryTest < Minitest::Test
   def test_country_capital_question
     skip("Not implemented yet")
   end
+
+  def test_sports_question
+    question = TriviaFactory::Question.sports
+    assert_equal question.question_type, :multiple_choice
+    assert_equal question.answer_type, :choice_index
+    assert_equal question.choices.count, 4
+    assert_operator question.answer, :<, question.choices.count
+    assert_match /NBA|Super Bowl|World Series|Stanley/i, question.label
+  end
 end

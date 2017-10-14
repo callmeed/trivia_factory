@@ -60,6 +60,10 @@ module TriviaFactory
         question
       end
 
+      def sports
+        TriviaFactory::SportsQuestion.generate
+      end
+
       def vocabulary
         TriviaFactory::VocabularyQuestion.generate
       end
