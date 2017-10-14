@@ -5,6 +5,11 @@ class TriviaFactoryTest < Minitest::Test
     refute_nil ::TriviaFactory::VERSION
   end
 
+  def test_random_question
+    question = TriviaFactory::Question.random
+    refute_nil question.label
+  end
+
   def test_to_hash
     question = TriviaFactory::Question.new
     assert_kind_of Hash, question.to_h

@@ -32,6 +32,16 @@ module TriviaFactory
     end
 
     class << self
+
+      def question_types
+        TriviaFactory.constants.select { |k| TriviaFactory.const_get(k).instance_of?(Class) && k != :Question }
+      end
+
+      def random
+        klass = question_types.sample
+        TriviaFactory.const_get(klass).generate
+      end
+
       def generate
         question = TriviaFactory::Question.new
       end
@@ -41,23 +51,7 @@ module TriviaFactory
       end
 
       def us_state_capitals
-        # File: us_state_capitals.csv
-        # Column 1: state
-        # Column 2: city
-        # Format: "Which is the most appropriate definition of the word '[WORD]'?"
-        data = fetch_csv('us_state_capitals')
-        answer_row = data.sample
-        question = TriviaFactory::Question.new
-        question.label = "#{answer_row[1]} is the capital of what US state?"
-        question.choices = [answer_row[0]]
-        question.question_type = :multiple_choice
-        question.answer_type = :choice_index
-        3.times do
-          question.choices << data.sample[0]
-        end
-        question.choices.shuffle!
-        question.answer = question.choices.index(answer_row[0])
-        question
+        TriviaFactory::UsStateCapitalsQuestion.generate
       end
 
       def sports
@@ -79,3 +73,4 @@ end
 require "trivia_factory/vocabulary_question"
 require "trivia_factory/math_question"
 require "trivia_factory/sports_question"
+require "trivia_factory/us_state_capitals_question"

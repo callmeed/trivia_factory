@@ -7,4 +7,8 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList["test/**/*_test.rb"]
 end
 
+task :console do
+  exec "irb -r trivia_factory -I ./lib"
+end
+
 task :default => :test
