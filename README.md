@@ -4,40 +4,33 @@ Ruby gem for creating sample trivia/test questions. Intended for use in specs (l
 
 ## Installation
 
-*Coming soon (gem not published yet)*
+`gem install trivia_factory`
+
+If you're using Bundler and/or Rails, add the following to your Gemfile:
+
+`gem 'trivia_factory'`
 
 ## Usage
 
-Sample question (not random yet):
+### Generate a random question (from all available types)
+
+`question = TriviaFactory::Question.random`
+
+This will return a `TriviaFactory::Question` object. Use the `to_h` helper to get it as a hash.
 
 ```
+question.to_h
 
-> question = TriviaFactory::Question.generate
->
-> question.to_h
-> {
->   label: "Who won the MLB World Series in 2016?",
->   question_type: :multiple_choice,
->   choices: ["San Francisco Giants", "Chicago Cubs", "Cleveland Indians", "Golden State Warriors"],
->   answer_type: :choice_index,
->   answer: 1
-> }
-
-```
-
-Basic math question (addition of random integers):
-
-```
-
-> question = TriviaFactory::Question.math(10)
-> 
-> question.to_h
-> {
->   label: "5 + 3 = _____?",
->   question_type: :fill_in_the_blank,
->   choices: [],
->   answer_type: :integer,
->   answer: 8
-> }
-
+{
+            :label => "Sacramento is the capital of what US state?",
+    :question_type => :multiple_choice,
+          :choices => [
+            "Oklahoma",
+            "Delaware",
+            "California",
+            "Oregon"
+          ],
+           :answer => 2,
+      :answer_type => :choice_index
+}
 ```
