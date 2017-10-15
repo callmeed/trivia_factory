@@ -1,7 +1,8 @@
 # Trivia Factory
 
 Ruby gem for creating tons of sample trivia/test questions. Intended for use in specs or apps that need questions.
-Think of it as [Faker](https://github.com/stympy/faker) for trivia questions.
+Think of it as [Faker](https://github.com/stympy/faker) for trivia questions + answers. It should be able to create
+thousands of unique questions.
 
 Originally part of a sports trivia app I had that was somewhat popular (Hat Trick), this gem uses tables of data (in CSV form) to
 create random questions.
@@ -61,19 +62,19 @@ Question objects have the following attributes (which are also available as keys
 
 Currently the following question categories exist as subclasses of `TriviaFactory::Question`:
 
-**TriviaFactory::MathQuestion**: generates a basic integer addition problem (fill in the blank).
+`TriviaFactory::MathQuestion`: generates a basic integer addition problem (fill in the blank).
 
-**TriviaFactory::SportsQuestion**: generates a sports trivia question (multiple choice).
+`TriviaFactory::SportsQuestion`: generates a sports trivia question (multiple choice).
 
-**TriviaFactory::UsStateCapitalsQuestion**: generates a question about US state capitals.
+`TriviaFactory::UsStateCapitalsQuestion`: generates a question about US state capitals.
 
-**TriviaFactory::CapitalCitiesQuestion**: generates a question about capital cities (worldwide)
+`TriviaFactory::CapitalCitiesQuestion`: generates a question about capital cities (worldwide)
 
-**TriviaFactory::AcademyAwardsQuestion**: generates a question about academy award winners
+`TriviaFactory::AcademyAwardsQuestion`: generates a question about academy award winners
 
-**TriviaFactory::VocabularyQuestion**: generates a multiple choice vocabulary *word* <-> *definition* question. From a list of 1,000 vocabulary study words.
+`TriviaFactory::VocabularyQuestion`: generates a multiple choice vocabulary *word* <-> *definition* question. From a list of 1,000 vocabulary study words.
 
-To create a question from any of these types, simply call the `generate()` method on any of the classes.
+To create a question from any of these types, simply call the `.generate()` method on any of the classes.
 
 ### More examples
 
