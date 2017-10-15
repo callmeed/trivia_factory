@@ -67,6 +67,10 @@ Currently the following question categories exist as subclasses of `TriviaFactor
 
 **TriviaFactory::UsStateCapitalsQuestion**: generates a question about US state capitals.
 
+**TriviaFactory::CapitalCitiesQuestion**: generates a question about capital cities (worldwide)
+
+**TriviaFactory::AcademyAwardsQuestion**: generates a question about academy award winners
+
 **TriviaFactory::VocabularyQuestion**: generates a multiple choice vocabulary *word* <-> *definition* question. From a list of 1,000 vocabulary study words.
 
 To create a question from any of these types, simply call the `generate()` method on any of the classes.
@@ -74,7 +78,7 @@ To create a question from any of these types, simply call the `generate()` metho
 ### More examples
 
 ```
-# Math question can accept a max param that can limit the size of operands
+# Math question can accept a max param that can limit the size of operands (default is 100)
 q = TriviaFactory::MathQuestion.generate(20)
 q.to_h
 =>  {

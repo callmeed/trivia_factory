@@ -62,6 +62,10 @@ module TriviaFactory
         TriviaFactory::SportsQuestion.generate
       end
 
+      def academy_awards
+        TriviaFactory::AcademyAwardsQuestion.generate
+      end
+
       def vocabulary
         TriviaFactory::VocabularyQuestion.generate
       end
@@ -79,3 +83,4 @@ require "trivia_factory/math_question"
 require "trivia_factory/sports_question"
 require "trivia_factory/us_state_capitals_question"
 require "trivia_factory/capital_cities_question"
+require "trivia_factory/academy_awards_question"
