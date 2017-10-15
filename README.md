@@ -1,6 +1,9 @@
 # Trivia Factory
 
-Ruby gem for creating sample trivia/test questions. Intended for use in specs (like Faker) or apps that need questions.
+Ruby gem for creating tons of sample trivia/test questions. Intended for use in specs (like Faker) or apps that need questions.
+
+Originally part of a sports trivia app I had that was somewhat popular (Hat Trick), this gem uses tables of data (in CSV form) to
+create random questions.
 
 ## Installation
 
@@ -41,7 +44,11 @@ Question objects have the following attributes (which are also available as keys
 
 **label**: this is the actual question being asked
 
-**question_type**: a symbol denoting the type of question. Will be one of the following: `[:true_false, :multiple_choice, :fill_in_the_blank]`
+**question_type**: a symbol denoting the type of question. Will be one of the following:
+
+* :true_false
+* :multiple_choice
+* :fill_in_the_blank
 
 **choices**: an array of choices for multiple choice questions. Will be an empty array (not `nil`) for other question types.
 
@@ -53,10 +60,43 @@ Question objects have the following attributes (which are also available as keys
 
 Currently the following question categories exist as subclasses of `TriviaFactory::Question`:
 
-**TriviaFactory::MathQuestion**
+**TriviaFactory::MathQuestion**: generates a basic integer addition problem (fill in the blank).
 
-**TriviaFactory::SportsQuestion**
+**TriviaFactory::SportsQuestion**: generates a sports trivia question (multiple choice).
 
-**TriviaFactory::UsStateCapitalsQuestion**
+**TriviaFactory::UsStateCapitalsQuestion**: generates a question about US state capitals.
 
-**TriviaFactory::VocabularyQuestion**
+**TriviaFactory::VocabularyQuestion**: generates a multiple choice vocabulary *word* <-> *definition* question. From a list of 1,000 vocabulary study words.
+
+To create a question from any of these types, simply call the `generate()` method on any of the classes.
+
+### More examples
+
+```
+# Math question can accept a max param that can limit the size of operands
+q = TriviaFactory::MathQuestion.generate(20)
+q.to_h
+=>  {
+      :label         => "5 + 5 = _____?",
+      :question_type => :fill_in_the_blank,
+      :choices       => [],
+      :answer        => 10,
+      :answer_type   => :integer
+    }
+```
+
+```
+q = TriviaFactory::SportsQuestion.generate
+q.to_h
+=> {
+      :label         => "In 1987 who defeated the St. Louis Cardinals to win the World Series?",
+      :question_type => :multiple_choice,
+      :choices       => ["Detroit Tigers", "Minnesota Twins", "Anaheim Angels", "New York Yankees"],
+      :answer        => 1,
+      :answer_type   => :choice_index
+    }
+```
+
+## Contributing
+
+Contributions welcome. Add a CSV to the data/ folder, create a subclass, write a test, and submit a PR. 
