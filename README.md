@@ -1,6 +1,7 @@
 # Trivia Factory
 
-Ruby gem for creating tons of sample trivia/test questions. Intended for use in specs (like Faker) or apps that need questions.
+Ruby gem for creating tons of sample trivia/test questions. Intended for use in specs or apps that need questions.
+Think of it as [Faker](https://github.com/stympy/faker) for trivia questions.
 
 Originally part of a sports trivia app I had that was somewhat popular (Hat Trick), this gem uses tables of data (in CSV form) to
 create random questions.
@@ -99,4 +100,4 @@ q.to_h
 
 ## Contributing
 
-Contributions welcome. Add a CSV to the data/ folder, create a subclass, write a test, and submit a PR. 
+Contributions welcome. Add a CSV to the data/ folder, create a subclass, write a test, and submit a PR.
