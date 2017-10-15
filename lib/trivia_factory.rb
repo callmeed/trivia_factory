@@ -43,7 +43,7 @@ module TriviaFactory
       end
 
       def generate
-        question = TriviaFactory::Question.new
+        TriviaFactory::Question.new
       end
 
       def math(max = 100)
@@ -52,6 +52,10 @@ module TriviaFactory
 
       def us_state_capitals
         TriviaFactory::UsStateCapitalsQuestion.generate
+      end
+
+      def capital_cities
+        TriviaFactory::CapitalCitiesQuestion.generate
       end
 
       def sports
@@ -64,7 +68,7 @@ module TriviaFactory
 
       def fetch_csv(name)
         file = File.join(File.dirname(__FILE__), "data", "#{name}.csv")
-        data = CSV.read(file)
+        CSV.read(file)
       end
     end
   end
@@ -74,3 +78,4 @@ require "trivia_factory/vocabulary_question"
 require "trivia_factory/math_question"
 require "trivia_factory/sports_question"
 require "trivia_factory/us_state_capitals_question"
+require "trivia_factory/capital_cities_question"

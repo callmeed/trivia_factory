@@ -43,7 +43,10 @@ class TriviaFactoryTest < Minitest::Test
   end
 
   def test_country_capital_question
-    skip("Not implemented yet")
+    question = TriviaFactory::Question.capital_cities
+    assert_equal question.question_type, :fill_in_the_blank
+    assert_equal question.answer_type, :string
+    assert_kind_of String, question.answer
   end
 
   def test_sports_question
