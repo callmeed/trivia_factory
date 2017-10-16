@@ -66,4 +66,13 @@ class TriviaFactoryTest < Minitest::Test
     assert_operator question.answer, :<, question.choices.count
     assert_match /actor|actress/i, question.label
   end
+
+  def test_company_question
+    question = TriviaFactory::Question.company
+    assert_equal question.question_type, :multiple_choice
+    assert_equal question.answer_type, :choice_index
+    assert_equal question.choices.count, 4
+    assert_operator question.answer, :<, question.choices.count
+    assert_match /ticker/i, question.label
+  end
 end

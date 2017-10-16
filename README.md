@@ -74,6 +74,8 @@ Currently the following question categories exist as subclasses of `TriviaFactor
 
 `TriviaFactory::VocabularyQuestion`: generates a vocabulary *word* <-> *definition* question. From a list of 1,000 vocabulary study words. (multiple choice)
 
+`TriviaFactory::CompanyQuestion`: generates a question about public companies on the S&P 500 and their ticker symbols (multiple choice)
+
 To create a question from any of these types, simply call the `.generate()` method on any of the classes.
 
 ### More examples
