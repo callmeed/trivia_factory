@@ -5,7 +5,7 @@ module TriviaFactory
 
     class << self
       def generate
-        # File: vocabulary.csv
+        # File: sports_champions.csv
         # 0: year
         # 1: championship ("wold series")
         # 2: counter/number ("IV" for super bowl)
@@ -15,7 +15,6 @@ module TriviaFactory
         question = TriviaFactory::Question.new
         data = fetch_csv('sports_champions')
         answer_row = data.sample
-        question = TriviaFactory::VocabularyQuestion.new
         if answer_row[2].nil?
           question.label = "In #{answer_row[0]} who defeated the #{answer_row[4]} to win the #{answer_row[1]}?"
         else

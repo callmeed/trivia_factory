@@ -3,7 +3,7 @@ module TriviaFactory
 
     class << self
       def generate
-        # File: vocabulary.csv
+        # File: academy_awards.csv
         # 0: award
         # 1: winner
         # 2: movie
@@ -11,7 +11,6 @@ module TriviaFactory
         question = TriviaFactory::Question.new
         data = fetch_csv('academy_awards')
         answer_row = data.sample
-        question = TriviaFactory::VocabularyQuestion.new
         question.label = "In #{answer_row[3]} #{answer_row[1]} won the academy award for #{answer_row[0]} for what film?"
         question.choices = [answer_row[2]]
         question.question_type = :multiple_choice
