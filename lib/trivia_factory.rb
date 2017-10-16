@@ -46,8 +46,8 @@ module TriviaFactory
         TriviaFactory::Question.new
       end
 
-      def math(max = 100)
-        TriviaFactory::MathQuestion.generate(max)
+      def math
+        TriviaFactory::MathQuestion.generate
       end
 
       def us_state_capitals

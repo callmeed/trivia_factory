@@ -44,16 +44,9 @@ module TriviaFactory
     end
 
     class << self
-      def generate(max = 100)
-        question = TriviaFactory::Question.new
-        rng = Random.new
-        first = rng.rand(max)
-        second = rng.rand(max)
-        question.label = "#{first} + #{second} = _____?"
-        question.question_type = :fill_in_the_blank
-        question.answer_type = :integer
-        question.answer = first + second
-        question.choices = []
+      def generate
+        sub_type = QUESTION_SUB_TYPES.sample
+        question = TriviaFactory::MathQuestion.new(sub_type)
         question
       end
     end

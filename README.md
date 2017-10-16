@@ -62,25 +62,24 @@ Question objects have the following attributes (which are also available as keys
 
 Currently the following question categories exist as subclasses of `TriviaFactory::Question`:
 
-`TriviaFactory::MathQuestion`: generates a basic integer addition problem (fill in the blank).
+`TriviaFactory::MathQuestion`: generates a basic integer addition, subtraction, multiplication, or division problem (fill in the blank).
 
 `TriviaFactory::SportsQuestion`: generates a sports trivia question (multiple choice).
 
-`TriviaFactory::UsStateCapitalsQuestion`: generates a question about US state capitals.
+`TriviaFactory::UsStateCapitalsQuestion`: generates a question about US state capitals (multiple choice).
 
-`TriviaFactory::CapitalCitiesQuestion`: generates a question about capital cities (worldwide)
+`TriviaFactory::CapitalCitiesQuestion`: generates a question about worldwide capital cities (fill in the blank)
 
-`TriviaFactory::AcademyAwardsQuestion`: generates a question about academy award winners
+`TriviaFactory::AcademyAwardsQuestion`: generates a question about academy award winners (multiple choice)
 
-`TriviaFactory::VocabularyQuestion`: generates a multiple choice vocabulary *word* <-> *definition* question. From a list of 1,000 vocabulary study words.
+`TriviaFactory::VocabularyQuestion`: generates a vocabulary *word* <-> *definition* question. From a list of 1,000 vocabulary study words. (multiple choice)
 
 To create a question from any of these types, simply call the `.generate()` method on any of the classes.
 
 ### More examples
 
 ```
-# Math question can accept a max param that can limit the size of operands (default is 100)
-q = TriviaFactory::MathQuestion.generate(20)
+q = TriviaFactory::MathQuestion.generate
 q.to_h
 =>  {
       :label         => "5 + 5 = _____?",
