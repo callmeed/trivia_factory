@@ -6,7 +6,7 @@ module TriviaFactory
         # File: us_state_capitals.csv
         # Column 1: state
         # Column 2: city
-        # Format: "Which is the most appropriate definition of the word '[WORD]'?"
+        # Format: "'[CITY]' is the capital of what US state?"
         data = fetch_csv('us_state_capitals')
         answer_row = data.sample
         question = TriviaFactory::Question.new
