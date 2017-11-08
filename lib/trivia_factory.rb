@@ -74,6 +74,10 @@ module TriviaFactory
         TriviaFactory::CompanyQuestion.generate
       end
 
+      def grammy_awards
+        TriviaFactory::GrammyAwardsQuestion.generate
+      end
+
       def fetch_csv(name)
         file = File.join(File.dirname(__FILE__), "data", "#{name}.csv")
         CSV.read(file)
@@ -89,3 +93,4 @@ require "trivia_factory/us_state_capitals_question"
 require "trivia_factory/capital_cities_question"
 require "trivia_factory/academy_awards_question"
 require "trivia_factory/company_question"
+require "trivia_factory/grammy_awards_question"

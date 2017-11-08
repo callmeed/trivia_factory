@@ -76,6 +76,9 @@ Currently the following question categories exist as subclasses of `TriviaFactor
 
 `TriviaFactory::CompanyQuestion`: generates a question about public companies on the S&P 500 and their ticker symbols (multiple choice)
 
+`TriviaFactory::GrammyAwardsQuestion`: generates a question about grammy award for album of the year (multiple choice)
+
+
 To create a question from any of these types, simply call the `.generate()` method on any of the classes.
 
 ### More examples
